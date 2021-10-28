@@ -5,22 +5,17 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <div className="navbar-container-left">
-        <div className="item">
-          <NavLink className="link" to="/register">
+        <div className="navbar-item">
+          <NavLink className="navbar-link" to="/register">
             Register
-          </NavLink>
-        </div>
-        <div className="item">
-          <NavLink className="link" to="/login">
-            Login
           </NavLink>
         </div>
       </div>
 
       <div className="navbar-container-right">
         <div>
-          <div className="item">
-            <NavLink className="link" to="/auctions">
+          <div className="navbar-item">
+            <NavLink className="navbar-link" to="/auctions">
               Auctions
             </NavLink>
           </div>
