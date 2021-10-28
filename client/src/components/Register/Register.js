@@ -25,12 +25,12 @@ const Register = () => {
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
-      <h1 class="mb-4 text-primary">Register now</h1>
+      <h1 className="mb-4 text-primary">Register now</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label className="control-label" htmlFor="name">
-              Full Name<span class="text-primary">*</span>:
+              Full Name<span className="text-primary">*</span>:
             </label>
             <input
               onChange={onChange}
@@ -44,7 +44,7 @@ const Register = () => {
           </div>
           <div className="form-group col-md-6">
             <label className="control-label" htmlFor="email">
-              Email<span class="text-primary">*</span>:
+              Email<span className="text-primary">*</span>:
             </label>
             <input
               onChange={onChange}
@@ -76,7 +76,7 @@ const Register = () => {
         </div>
         <div className="form-group">
           <label className="control-label">
-            Password<span class="text-primary">*</span>:
+            Password<span className="text-primary">*</span>:
           </label>
           <div>
             <input
@@ -106,10 +106,10 @@ const Register = () => {
             />
           </div>
         </div>
-        <div class="pt-2">
+        <div className="pt-2">
           <input type="submit" className="register-button" value="Submit" />
         </div>
-        <p class="text-muted my-2">
+        <p className="text-muted my-2">
           You already have an account?{" "}
           <Link className="register-link" to="/login">
             Log In
