@@ -1,6 +1,5 @@
 const userRouter = require("express").Router();
-
-userRouter.post('/login')
-
-
-module.exports=userRouter;
+const { login, register } = require("../services/user-services");
+userRouter.post("/login", login);
+userRouter.post("/register", register);
+module.exports = userRouter;

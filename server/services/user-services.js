@@ -1,51 +1,52 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User=require('../models/User')
+const User = require("../models/User");
 
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  let user = await User.findOne({ email });
 
-const login=async(req,res)=>{
-    const { email, password } = req.body;
-    let user = await User.findOne({ email });
+  if (user) {
+    const passwordCorrect = await bcrypt.compare(password, user.password);
 
-    if (user) {
-      const passwordCorrect = await bcrypt.compare(password, user.password);
-
-      if (!passwordCorrect) {
-        return res.status(400).send( "Invalid password!");
-      }
-
-      const payload = { user: { id: user.id } };
-      const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: "1h" });
-      res.json({ token: token });
-    } else {
-      return res.status(400).send( "Invalid email!" );
+    if (!passwordCorrect) {
+      return res.status(400).send("Invalid password!");
     }
-}
 
-const register = async(req, res)=>{
-    try {
-        let { name, email, password, address} = req.body;
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-        let user;
-            user = new User({
-              name,
-              email,
-              password: hashedPassword,
-              address,
-              
-            });
-            await user.save();
-            break;
-        
-        const payload = { user: { id: user.id } };
-        const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: "1h" });
-        res.json({ token: token });
-      } catch (error) {
-        console.log(error.message);
-        res
-          .status(400)
-          .send("An account with this email already exists" );
-      }
-    
-}
+    const payload = { user: { id: user.id } };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.json({ token: token });
+  } else {
+    return res.status(400).send("Invalid email!");
+  }
+};
+
+const register = async (req, res) => {
+  try {
+    let { name, email, password, address } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      address,
+    });
+    await user.save();
+
+    const payload = { user: { id: user.id } };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.json({ token: token });
+  } catch (error) {
+    res.status(400).send("An account with this email already exists");
+  }
+};
+
+module.exports = { login, register };
