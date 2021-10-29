@@ -90,22 +90,6 @@ const Register = () => {
             />
           </div>
         </div>
-        <div className="form-group">
-          <label className="control-label" htmlFor="password">
-            Description:
-          </label>
-          <div>
-            <textarea
-              onChange={onChange}
-              type="text"
-              className="form-control"
-              name="description"
-              placeholder="Description"
-              value={description}
-              rows="2"
-            />
-          </div>
-        </div>
         <div className="pt-2">
           <input type="submit" className="register-button" value="Submit" />
         </div>
