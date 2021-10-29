@@ -1,0 +1,25 @@
+@import "../../utils/variables.scss";
+.login {
+  &-button {
+    border-radius: 4px;
+    border: none;
+    padding: 5px 5px 5px 5px;
+    color: white;
+    background-color: $light-blue;
+    &:hover {
+      background-color: $orange;
+      color: white;
+      font-size: medium;
+    }
+  }
+  &-link {
+    text-decoration: none;
+    color: $light-blue;
+    font-size: medium;
+    &:hover {
+      text-decoration: none;
+      color: $orange;
+      font-size: medium;
+    }
+  }
+}

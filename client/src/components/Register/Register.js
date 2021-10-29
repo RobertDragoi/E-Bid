@@ -3,19 +3,13 @@ import { Link } from "react-router-dom";
 import "./Register.scss";
 const Register = () => {
   const [user, setUser] = useState({
-    type: "",
     name: "",
     email: "",
     password: "",
     address: "",
-    description: "",
-    birthDate: "",
-    school: "",
-    activity: "",
-    creationDate: "",
   });
 
-  const { name, email, address, password, description } = user;
+  const { name, email, address, password } = user;
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
