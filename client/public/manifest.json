@@ -1,0 +1,15 @@
+{
+  "short_name": "E-Bid",
+  "name": "E-Bid | Online bidding",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "type ": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#040321"
+}
