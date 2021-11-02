@@ -18,7 +18,7 @@ const login = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.json({ token: token });
+    res.send(token);
   } else {
     return res.status(400).send("Invalid email!");
   }
@@ -26,7 +26,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    let { name, email, password, address } = req.body;
+    const { name, email, password, address } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -37,15 +37,14 @@ const register = async (req, res) => {
       address,
     });
     await user.save();
-
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    res.json({ token: token });
+    res.send(token);
   } catch (error) {
-    res.status(400).send("An account with this email already exists");
+    res.status(400).send("An account with this email already exists!");
   }
 };
 
