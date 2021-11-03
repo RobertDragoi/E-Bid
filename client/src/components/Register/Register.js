@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerOperation } from "../../state/operations/userOperations";
 import "./Register.scss";
 const Register = () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
     address: "",
   });
-
   const { name, email, address, password } = user;
 
   const onChange = (e) => {
@@ -16,6 +18,7 @@ const Register = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(registerOperation(user));
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
