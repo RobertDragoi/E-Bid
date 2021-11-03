@@ -1,22 +1,26 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './Login.scss';
+import { useDispatch } from "react-redux";
+import { loginOperation } from "../../state/operations/userOperations";
+import "./Login.scss";
 const Login = () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  const {  email, password} = user;
+  const { email, password } = user;
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(loginOperation(user));
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
-      <h1 className="mb-4 text-primary">Register now</h1>
+      <h1 className="mb-4 text-primary">Login now</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
           <div className="form-group col-md-6">
@@ -35,7 +39,6 @@ const Login = () => {
           </div>
         </div>
 
-     
         <div className="form-group">
           <label className="control-label">
             Password<span className="text-primary">*</span>:
