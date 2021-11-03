@@ -47,5 +47,12 @@ const register = async (req, res) => {
     res.status(400).send("An account with this email already exists!");
   }
 };
-
-module.exports = { login, register };
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id, "-password");
+    res.json(user);
+  } catch (error) {
+    res.status(400).send("User can't be found!");
+  }
+};
+module.exports = { login, register, getUser };
