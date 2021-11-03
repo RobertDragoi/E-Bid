@@ -32,10 +32,18 @@
     text-decoration: none;
     color: white;
     font-size: medium;
+
     &:hover {
       text-decoration: none;
       color: white;
       font-size: medium;
+    }
+  }
+  &-button {
+    background: none;
+    border: none;
+    &:hover {
+      cursor: pointer;
     }
   }
 }
