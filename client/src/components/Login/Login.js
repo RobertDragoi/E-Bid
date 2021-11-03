@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { loginOperation } from "../../state/operations/userOperations";
 import "./Login.scss";
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -17,13 +19,14 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(loginOperation(user));
+    history.push("/");
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
       <h1 className="mb-4 text-primary">Login now</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-12">
             <label className="control-label" htmlFor="email">
               Email<span className="text-primary">*</span>:
             </label>
@@ -39,7 +42,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="form-group">
+        <div className="form-group col-md-12">
           <label className="control-label">
             Password<span className="text-primary">*</span>:
           </label>

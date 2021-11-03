@@ -25,7 +25,7 @@ const Register = () => {
       <h1 className="mb-4 text-primary">Register now</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-12">
             <label className="control-label" htmlFor="name">
               Full Name<span className="text-primary">*</span>:
             </label>
@@ -39,7 +39,7 @@ const Register = () => {
               placeholder="Full name"
             />
           </div>
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-12">
             <label className="control-label" htmlFor="email">
               Email<span className="text-primary">*</span>:
             </label>
@@ -55,7 +55,7 @@ const Register = () => {
           </div>
         </div>
 
-        <div className="form-group">
+        <div className="form-group col-md-12">
           <label className="control-label" htmlFor="Address">
             Address:
           </label>
@@ -71,7 +71,7 @@ const Register = () => {
             />
           </div>
         </div>
-        <div className="form-group">
+        <div className="form-group col-md-12">
           <label className="control-label">
             Password<span className="text-primary">*</span>:
           </label>
