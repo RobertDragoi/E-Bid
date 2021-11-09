@@ -12,7 +12,7 @@ const Navbar = () => {
         {isAuthenticated ? (
           <>
             <div className="navbar-item">
-              <NavLink className="navbar-link" to="/register">
+              <NavLink className="navbar-link" to="/profile">
                 {user?.name}
               </NavLink>
             </div>
@@ -37,7 +37,7 @@ const Navbar = () => {
       <div className="navbar-container-right">
         <div>
           <div className="navbar-item">
-            <NavLink className="navbar-link" to="/actions">
+            <NavLink className="navbar-link" to="/auctions">
               Auctions
             </NavLink>
           </div>
