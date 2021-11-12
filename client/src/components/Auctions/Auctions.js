@@ -4,11 +4,11 @@ const Auctions = () => {
   return (
     <div class="container">
       <div class="row">
-        <div className="col-2">dsads</div>
+        <div className="col-2"></div>
         <div className="col-8">
           <Auction />
         </div>
-        <div className="col-2">dsads</div>
+        <div className="col-2"></div>
       </div>
     </div>
   );
