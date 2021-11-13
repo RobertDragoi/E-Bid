@@ -19,7 +19,7 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(loginOperation(user));
-    history.push("/");
+    history.push("/auctions");
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
