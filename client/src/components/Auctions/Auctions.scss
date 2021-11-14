@@ -1,0 +1,15 @@
+@import "../../utils/variables.scss";
+.auctions {
+  &-button {
+    border-radius: 4px;
+    border: none;
+    padding: 5px 5px 5px 5px;
+    color: white;
+    background-color: $light-blue;
+    &:hover {
+      background-color: $orange;
+      color: white;
+      font-size: medium;
+    }
+  }
+}
