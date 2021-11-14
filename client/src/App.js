@@ -6,6 +6,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Footer from "./components/Footer/Footer";
 import Auctions from "./components/Auctions/Auctions";
+import Profile from "./components/Profile/Profile";
 import { Provider } from "react-redux";
 import store from "./state/store";
 const App = () => {
@@ -22,6 +23,9 @@ const App = () => {
           </Route>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
           </Route>
         </BrowserRouter>
       </div>
