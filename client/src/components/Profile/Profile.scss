@@ -16,6 +16,8 @@
     &-left {
       width: 50%;
       margin-right: 10px;
+      padding-left: 10px;
+      border-left: 1px solid $light-blue;
       border-right: 1px solid $light-blue;
     }
   }
