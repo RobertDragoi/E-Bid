@@ -3,8 +3,11 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
+import { logoutOperation } from "../../state/operations/userOperations";
 import "./Navbar.scss";
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.user);
   return (
     <div className="navbar-container">
@@ -17,12 +20,12 @@ const Navbar = () => {
               </NavLink>
             </div>
             <div className="navbar-item">
-              <buttom
-                onClick={() => console.log("logout")}
+              <button
+                onClick={() => dispatch(logoutOperation)}
                 className="navbar-button"
               >
                 <FontAwesomeIcon color="white" icon={faSignOutAlt} />
-              </buttom>
+              </button>
             </div>
           </>
         ) : (

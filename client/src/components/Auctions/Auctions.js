@@ -13,7 +13,7 @@ const Auctions = () => {
           >
             Place an auction
           </button>
-          <Auction />
+          <Auction id={"2000"} />
         </div>
         <div className="col-2"></div>
       </div>

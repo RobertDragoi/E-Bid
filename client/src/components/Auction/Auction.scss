@@ -1,5 +1,16 @@
 @import "../../utils/variables.scss";
 .auction-container {
+  &-link {
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+
+    &:hover {
+      text-decoration: none;
+      color: black;
+      font-size: medium;
+    }
+  }
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

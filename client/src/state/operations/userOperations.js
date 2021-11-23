@@ -4,6 +4,7 @@ import {
   registerAction,
   getUserAction,
   userErrorAction,
+  logoutAction,
 } from "../actions/userActions";
 export const loginOperation = (body) => async (dispatch) => {
   try {
@@ -41,4 +42,7 @@ export const getUserOperation = () => async (dispatch) => {
   } catch (error) {
     dispatch(userErrorAction(error.response.data));
   }
+};
+export const logoutOperation = (dispatch) => {
+  dispatch(logoutAction());
 };
