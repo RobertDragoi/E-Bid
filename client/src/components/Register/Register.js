@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { registerOperation } from "../../state/operations/userOperations";
 import "./Register.scss";
 const Register = () => {
+  const { error, isAuthenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      history.push("/auctions");
+    }
+  });
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -99,6 +105,11 @@ const Register = () => {
             Log In
           </Link>
         </p>
+        {error ? (
+          <div class="alert alert-danger" role="alert">
+            {error}
+          </div>
+        ) : null}
       </form>
     </div>
   );

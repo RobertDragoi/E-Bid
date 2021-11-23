@@ -8,9 +8,9 @@ const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case REGISTER:
-      return { ...state, isAuthenticated: true };
+      return { ...state, isAuthenticated: true, error: null };
     case LOGIN:
-      return { ...state, isAuthenticated: true };
+      return { ...state, isAuthenticated: true, error: null };
     case GET_USER:
       return { ...state, user: payload };
     case USER_ERROR:

@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { loginOperation } from "../../state/operations/userOperations";
 import "./Login.scss";
 const Login = () => {
+  const { error, isAuthenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      history.push("/auctions");
+    }
+  });
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -19,7 +25,6 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(loginOperation(user));
-    history.push("/auctions");
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
@@ -67,6 +72,11 @@ const Login = () => {
             Sign up
           </Link>
         </p>
+        {error ? (
+          <div class="alert alert-danger" role="alert">
+            {error}
+          </div>
+        ) : null}
       </form>
     </div>
   );

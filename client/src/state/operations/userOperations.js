@@ -28,7 +28,9 @@ export const registerOperation = (body) => async (dispatch) => {
     localStorage.setItem("token", response.data);
     dispatch(registerAction());
     dispatch(getUserOperation());
-  } catch (error) {}
+  } catch (error) {
+    dispatch(userErrorAction(error.response.data));
+  }
 };
 export const getUserOperation = () => async (dispatch) => {
   try {
