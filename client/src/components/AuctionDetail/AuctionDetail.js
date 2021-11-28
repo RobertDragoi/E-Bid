@@ -22,7 +22,7 @@ const AuctionDetail = () => {
               electronic typesetting, remaining essentially unchanged.
             </div>
             <div className="auctiondetail-container-list">
-              <h3 className="auctiondetail-container-title">List of bidders</h3>
+              <h3>List of bidders</h3>
               <div className="auctiondetail-container-list-item">
                 <div>Andrei</div>
                 <div>100$</div>
