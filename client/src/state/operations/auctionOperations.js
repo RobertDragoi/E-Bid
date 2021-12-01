@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   addAuctionAction,
   auctionErrorAction,
+  getAuctionsAction,
 } from "../actions/auctionActions";
 
 export const addAuctionOperation = (body) => async (dispatch) => {
@@ -17,6 +18,22 @@ export const addAuctionOperation = (body) => async (dispatch) => {
       config
     );
     dispatch(addAuctionAction(response.data));
+  } catch (error) {
+    dispatch(auctionErrorAction(error.response.data));
+  }
+};
+export const getAuctionsOptions = () => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+    const response = await axios.get(
+      "http://localhost:8080/api/auction",
+      config
+    );
+    dispatch(getAuctionsAction(response.data));
   } catch (error) {
     dispatch(auctionErrorAction(error.response.data));
   }

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Auction from "../Auction/Auction";
-import { addAuctionOperation } from "../../state/operations/auctionOperations";
+import {
+  addAuctionOperation,
+  getAuctionsOptions,
+} from "../../state/operations/auctionOperations";
 import "./Auctions.scss";
 const Auctions = () => {
   const [show, setShow] = useState(false);
@@ -19,6 +22,9 @@ const Auctions = () => {
     e.preventDefault();
     dispatch(addAuctionOperation(auction));
   };
+  useEffect(() => {
+    dispatch(getAuctionsOptions());
+  }, []);
   return (
     <div class="container mt-3">
       <div class="row">

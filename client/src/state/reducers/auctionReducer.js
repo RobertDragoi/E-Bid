@@ -1,4 +1,4 @@
-import { ADD_AUCTION, AUCTION_ERROR } from "../types.js";
+import { ADD_AUCTION, AUCTION_ERROR, GET_AUCTIONS } from "../types.js";
 const initialState = {
   auctions: [],
   usersAuctions: [],
@@ -9,6 +9,8 @@ const auctionReducer = (state = initialState, action) => {
   switch (type) {
     case ADD_AUCTION:
       return { ...state, auctions: [...state.auctions, payload] };
+    case GET_AUCTIONS:
+      return { ...state, auctions: payload };
     case AUCTION_ERROR:
       return { ...state, error: payload };
     default:

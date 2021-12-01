@@ -10,4 +10,12 @@ const postAuction = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
-module.exports = { postAuction };
+const getAuctions = async (req, res) => {
+  try {
+    const auctions = await Auction.find();
+    res.send(auctions);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+module.exports = { postAuction, getAuctions };
