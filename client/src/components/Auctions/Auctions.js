@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Auction from "../Auction/Auction";
+import { addAuctionOperation } from "../../state/operations/auctionOperations";
 import "./Auctions.scss";
 const Auctions = () => {
   const [show, setShow] = useState(false);
@@ -9,12 +11,13 @@ const Auctions = () => {
     buynowPrice: "",
   });
   const { title, description, buynowPrice } = auction;
-
+  const dispatch = useDispatch();
   const onChange = (e) => {
-    setAuction({ ...auction, [e.tager.name]: e.target.value });
+    setAuction({ ...auction, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(addAuctionOperation(auction));
   };
   return (
     <div class="container mt-3">
@@ -49,7 +52,7 @@ const Auctions = () => {
                     onChange={onChange}
                     type="text"
                     className="form-control"
-                    name="email"
+                    name="description"
                     value={description}
                     required
                     placeholder="Description"
@@ -64,9 +67,9 @@ const Auctions = () => {
                 <div>
                   <input
                     onChange={onChange}
-                    type="text"
+                    type="number"
                     className="form-control"
-                    name="address"
+                    name="buynowPrice"
                     value={buynowPrice}
                     placeholder="Buy now price"
                   />
