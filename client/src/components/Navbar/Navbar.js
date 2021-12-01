@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   faSignOutAlt,
   faAlignJustify,
@@ -9,12 +9,17 @@ import {
   faStamp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useDispatch } from "react-redux";
-import { logoutOperation } from "../../state/operations/userOperations";
+import {
+  logoutOperation,
+  getUserOperation,
+} from "../../state/operations/userOperations";
 import "./Navbar.scss";
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getUserOperation());
+  }, []);
   return (
     <div className="navbar-container">
       <div className="navbar-item">

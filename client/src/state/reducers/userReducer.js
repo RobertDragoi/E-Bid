@@ -12,7 +12,7 @@ const userReducer = (state = initialState, action) => {
     case LOGIN:
       return { ...state, isAuthenticated: true, error: null };
     case GET_USER:
-      return { ...state, user: payload };
+      return { ...state, user: payload, isAuthenticated: true };
     case USER_ERROR:
       return { ...state, error: payload };
     case LOGOUT:

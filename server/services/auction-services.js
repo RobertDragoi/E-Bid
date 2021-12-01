@@ -5,8 +5,7 @@ const postAuction = async (req, res) => {
     const { title, description, buynowPrice } = req.body;
     const auction = new Auction({ title, description, buynowPrice });
     await auction.save();
-    console.log(req.user.id);
-    res.send(auction.id);
+    res.send(auction);
   } catch (error) {
     res.status(400).send(error.message);
   }
