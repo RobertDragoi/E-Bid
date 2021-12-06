@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Auction.scss";
 const Auction = (props) => {
+  const convertDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toDateString();
+  };
   return (
     <Link className="auction-container-link" to={`/auction/${props.id}`}>
       <div className="auction-container">
@@ -10,11 +14,11 @@ const Auction = (props) => {
         </div>
         <div className="auction-container-text">
           <div className="auction-container-text-upper">
-            <div>Audi A4 2.0 TDI 2017</div>
+            <div>{props.title}</div>
             <div>9000$</div>
           </div>
           <div className="auction-container-text-bottom">
-            <div>19.10.2021</div>
+            <div>{convertDate(props.date)}</div>
             <div>You are leading</div>
           </div>
         </div>

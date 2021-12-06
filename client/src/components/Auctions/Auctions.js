@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Auction from "../Auction/Auction";
 import {
   addAuctionOperation,
@@ -14,6 +14,7 @@ const Auctions = () => {
     buynowPrice: "",
   });
   const { title, description, buynowPrice } = auction;
+  const { auctions } = useSelector((state) => state.auction);
   const dispatch = useDispatch();
   const onChange = (e) => {
     setAuction({ ...auction, [e.target.name]: e.target.value });
@@ -21,6 +22,7 @@ const Auctions = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(addAuctionOperation(auction));
+    dispatch(getAuctionsOptions());
   };
   useEffect(() => {
     dispatch(getAuctionsOptions());
@@ -90,7 +92,18 @@ const Auctions = () => {
               </div>
             </form>
           )}
-          <Auction id={"2000"} />
+          {auctions
+            .sort(function (a, b) {
+              return b.date - a.date;
+            })
+            .map((auction) => (
+              <Auction
+                id={auction._id}
+                price={auction.price}
+                title={auction.title}
+                date={auction.date}
+              />
+            ))}
         </div>
         <div className="col-2"></div>
       </div>

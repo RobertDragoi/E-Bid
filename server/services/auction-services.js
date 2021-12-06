@@ -12,7 +12,7 @@ const postAuction = async (req, res) => {
 };
 const getAuctions = async (req, res) => {
   try {
-    const auctions = await Auction.find();
+    const auctions = await Auction.find().sort({ date: -1 });
     res.send(auctions);
   } catch (error) {
     res.status(400).send(error.message);
