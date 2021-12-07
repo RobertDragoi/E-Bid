@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 import {
   faSignOutAlt,
   faAlignJustify,
@@ -18,7 +19,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(getUserOperation());
+    if (Cookies.get("token")) dispatch(getUserOperation());
   }, []);
   return (
     <div className="navbar-container">

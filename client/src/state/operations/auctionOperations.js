@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import {
   addAuctionAction,
   auctionErrorAction,
@@ -9,7 +10,7 @@ export const addAuctionOperation = (body) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "x-auth-token": localStorage.getItem("token"),
+        "x-auth-token": Cookies.get("token"),
       },
     };
     const response = await axios.post(
@@ -26,7 +27,7 @@ export const getAuctionsOptions = () => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "x-auth-token": localStorage.getItem("token"),
+        "x-auth-token": Cookies.get("token"),
       },
     };
     const response = await axios.get(
