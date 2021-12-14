@@ -47,5 +47,6 @@ export const getUserOperation = () => async (dispatch) => {
   }
 };
 export const logoutOperation = (dispatch) => {
+  Cookies.remove("token");
   dispatch(logoutAction());
 };

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import {
@@ -17,6 +17,7 @@ import {
 import "./Navbar.scss";
 const Navbar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
     if (Cookies.get("token")) dispatch(getUserOperation());
@@ -43,7 +44,10 @@ const Navbar = () => {
             </div>
             <div
               className="navbar-item-content-item"
-              onClick={() => dispatch(logoutOperation)}
+              onClick={() => {
+                dispatch(logoutOperation);
+                history.push("/");
+              }}
             >
               <div className="navbar-link">
                 <FontAwesomeIcon color="white" icon={faSignOutAlt} />
