@@ -20,25 +20,21 @@ const AuctionDetail = () => {
         <div className="col-2" />
         <div className="col-8">
           <div className="auctiondetail-container">
-            <h3>{auction.title}</h3>
-            <div>{convertDate(auction.date)}</div>
+            <h3>{auction?.title}</h3>
+            <div>{convertDate(auction?.date)}</div>
             <div className="auctiondetail-container-description">
-              {auction.description}
+              {auction?.description}
             </div>
             <div className="auctiondetail-container-list">
               <h3>List of bidders</h3>
-              <div className="auctiondetail-container-list-item">
-                <div>Andrei</div>
-                <div>100$</div>
-              </div>
-              <div className="auctiondetail-container-list-item">
-                <div>Oana</div>
-                <div>120$</div>
-              </div>
-              <div className="auctiondetail-container-list-item">
-                <div>Marian</div>
-                <div>140$</div>
-              </div>
+              {auction.prices.length > 0 &&
+                auction?.prices.map((price) => (
+                  <div className="auctiondetail-container-list-item">
+                    <div>{price.user.name}</div>
+                    <div>{price.price}</div>
+                  </div>
+                ))}
+
               <div className="auctiondetail-container-list-item">
                 <input type="text" value={value} onChange={onChange} />
                 <button className="auctiondetail-button">Place bet</button>

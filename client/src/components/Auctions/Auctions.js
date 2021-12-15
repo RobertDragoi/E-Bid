@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Auction from "../Auction/Auction";
 import {
@@ -30,9 +30,7 @@ const Auctions = () => {
     });
     setShow(false);
   };
-  useEffect(() => {
-    dispatch(getAuctionsOptions());
-  }, []);
+
   return (
     <div className="container mt-3">
       <div className="row">

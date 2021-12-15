@@ -14,13 +14,17 @@ import {
   logoutOperation,
   getUserOperation,
 } from "../../state/operations/userOperations";
+import { getAuctionsOptions } from "../../state/operations/auctionOperations";
 import "./Navbar.scss";
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
-    if (Cookies.get("token")) dispatch(getUserOperation());
+    if (Cookies.get("token")) {
+      dispatch(getUserOperation());
+      dispatch(getAuctionsOptions());
+    }
   }, []);
   return (
     <div className="navbar-container">
