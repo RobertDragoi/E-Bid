@@ -8,8 +8,8 @@ const Profile = () => {
   };
   const { user } = useSelector((state) => state.user);
   return (
-    <div class="container">
-      <div class="row">
+    <div className="container">
+      <div className="row">
         <div className="col-2"></div>
         <div className="col-8">
           <div className="profile-container">

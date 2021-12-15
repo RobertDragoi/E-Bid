@@ -11,9 +11,9 @@ const Auctions = () => {
   const [auction, setAuction] = useState({
     title: "",
     description: "",
-    buynowPrice: "",
+    startPrice: "",
   });
-  const { title, description, buynowPrice } = auction;
+  const { title, description, startPrice } = auction;
   const { auctions } = useSelector((state) => state.auction);
   const dispatch = useDispatch();
   const onChange = (e) => {
@@ -23,13 +23,19 @@ const Auctions = () => {
     e.preventDefault();
     dispatch(addAuctionOperation(auction));
     dispatch(getAuctionsOptions());
+    setAuction({
+      title: "",
+      description: "",
+      startPrice: "",
+    });
+    setShow(false);
   };
   useEffect(() => {
     dispatch(getAuctionsOptions());
   }, []);
   return (
-    <div class="container mt-3">
-      <div class="row">
+    <div className="container mt-3">
+      <div className="row">
         <div className="col-2"></div>
         <div className="col-8">
           <button className="auctions-button" onClick={() => setShow(!show)}>
@@ -70,16 +76,16 @@ const Auctions = () => {
 
               <div className="form-group col-md-12">
                 <label className="control-label" htmlFor="Address">
-                  Buy now price:
+                  Start price:
                 </label>
                 <div>
                   <input
                     onChange={onChange}
                     type="number"
                     className="form-control"
-                    name="buynowPrice"
-                    value={buynowPrice}
-                    placeholder="Buy now price"
+                    name="startPrice"
+                    value={startPrice}
+                    placeholder="Start price"
                   />
                 </div>
               </div>
@@ -92,18 +98,17 @@ const Auctions = () => {
               </div>
             </form>
           )}
-          {auctions
-            .sort(function (a, b) {
-              return b.date - a.date;
-            })
-            .map((auction) => (
-              <Auction
-                id={auction._id}
-                price={auction.price}
-                title={auction.title}
-                date={auction.date}
-              />
-            ))}
+          {auctions.map((auction) => (
+            <Auction
+              key={`auction_${auction._id}`}
+              id={auction._id}
+              startPrice={auction.startPrice}
+              prices={auction.prices}
+              title={auction.title}
+              participation={auction.participation}
+              date={auction.date}
+            />
+          ))}
         </div>
         <div className="col-2"></div>
       </div>

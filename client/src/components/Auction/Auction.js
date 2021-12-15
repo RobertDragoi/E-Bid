@@ -1,5 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  faCheckSquare,
+  faWindowClose,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Auction.scss";
 const Auction = (props) => {
   const convertDate = (dateStr) => {
@@ -15,11 +20,21 @@ const Auction = (props) => {
         <div className="auction-container-text">
           <div className="auction-container-text-upper">
             <div>{props.title}</div>
-            <div>9000$</div>
+            <div>
+              {props.prices.length > 0
+                ? props.prices[props.prices.length - 1]
+                : props.startPrice}
+            </div>
           </div>
           <div className="auction-container-text-bottom">
             <div>{convertDate(props.date)}</div>
-            <div>You are leading</div>
+            <div>
+              {props.participation ? (
+                <FontAwesomeIcon color="black" icon={faCheckSquare} />
+              ) : (
+                <FontAwesomeIcon color="black" icon={faWindowClose} />
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -2,8 +2,8 @@ const Auction = require("../models/Auction");
 
 const postAuction = async (req, res) => {
   try {
-    const { title, description, buynowPrice } = req.body;
-    const auction = new Auction({ title, description, buynowPrice });
+    const { title, description, startPrice } = req.body;
+    const auction = new Auction({ title, description, startPrice });
     await auction.save();
     res.send(auction);
   } catch (error) {

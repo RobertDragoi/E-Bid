@@ -8,7 +8,7 @@ const auctionReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_AUCTION:
-      return { ...state, auctions: [...state.auctions, payload] };
+      return { ...state, auctions: [payload, ...state.auctions] };
     case GET_AUCTIONS:
       return { ...state, auctions: payload };
     case AUCTION_ERROR:

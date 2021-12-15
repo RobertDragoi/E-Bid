@@ -1,25 +1,29 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 import "./AuctionDetail.scss";
 const AuctionDetail = () => {
+  const convertDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toDateString();
+  };
   const [value, setValue] = useState();
+  const { auctions } = useSelector((state) => state.auction);
   const onChange = (e) => {
     setValue(e.target.value);
   };
+  const { id } = useParams();
+  const auction = auctions.find((auction) => auction._id === id);
   return (
-    <div class="container">
-      <div class="row">
+    <div className="container">
+      <div className="row">
         <div className="col-2" />
         <div className="col-8">
           <div className="auctiondetail-container">
-            <h3>Audi A4 2.0 TDI 2017</h3>
-            <div>19.10.2021</div>
+            <h3>{auction.title}</h3>
+            <div>{convertDate(auction.date)}</div>
             <div className="auctiondetail-container-description">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
+              {auction.description}
             </div>
             <div className="auctiondetail-container-list">
               <h3>List of bidders</h3>
