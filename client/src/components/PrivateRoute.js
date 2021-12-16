@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
 const PrivateRoute = ({ component, ...rest }) => {
   const isLogged = Cookies.get("token") || null;
-  console.log(isLogged);
   return (
     <Route
       {...rest}

@@ -22,7 +22,7 @@ const Auction = (props) => {
             <div>{props.title}</div>
             <div>
               {props.prices.length > 0
-                ? props.prices[props.prices.length - 1]
+                ? props.prices[props.prices.length - 1].price
                 : props.startPrice}
             </div>
           </div>

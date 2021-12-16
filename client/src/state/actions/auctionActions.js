@@ -1,4 +1,9 @@
-import { ADD_AUCTION, AUCTION_ERROR, GET_AUCTIONS } from "../types.js";
+import {
+  ADD_AUCTION,
+  AUCTION_ERROR,
+  GET_AUCTIONS,
+  BID_AUCTION,
+} from "../types.js";
 export const addAuctionAction = (values) => ({
   type: ADD_AUCTION,
   payload: values,
@@ -9,5 +14,9 @@ export const auctionErrorAction = (values) => ({
 });
 export const getAuctionsAction = (values) => ({
   type: GET_AUCTIONS,
+  payload: values,
+});
+export const bidAuctionAction = (values) => ({
+  type: BID_AUCTION,
   payload: values,
 });

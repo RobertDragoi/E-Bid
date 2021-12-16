@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Auction from "../Auction/Auction";
 import {
@@ -7,6 +7,9 @@ import {
 } from "../../state/operations/auctionOperations";
 import "./Auctions.scss";
 const Auctions = () => {
+  useEffect(() => {
+    dispatch(getAuctionsOptions());
+  }, []);
   const [show, setShow] = useState(false);
   const [auction, setAuction] = useState({
     title: "",
@@ -96,7 +99,7 @@ const Auctions = () => {
               </div>
             </form>
           )}
-          {auctions.map((auction) => (
+          {auctions?.map((auction) => (
             <Auction
               key={`auction_${auction._id}`}
               id={auction._id}

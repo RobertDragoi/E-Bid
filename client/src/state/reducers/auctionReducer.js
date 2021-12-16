@@ -1,4 +1,9 @@
-import { ADD_AUCTION, AUCTION_ERROR, GET_AUCTIONS } from "../types.js";
+import {
+  ADD_AUCTION,
+  AUCTION_ERROR,
+  GET_AUCTIONS,
+  BID_AUCTION,
+} from "../types.js";
 const initialState = {
   auctions: [],
   usersAuctions: [],
@@ -11,8 +16,16 @@ const auctionReducer = (state = initialState, action) => {
       return { ...state, auctions: [payload, ...state.auctions] };
     case GET_AUCTIONS:
       return { ...state, auctions: payload };
+    case BID_AUCTION:
+      return {
+        ...state,
+        auctions: state.auctions.map((auction) =>
+          auction._id === payload._id ? payload : auction
+        ),
+      };
     case AUCTION_ERROR:
       return { ...state, error: payload };
+
     default:
       return state;
   }
