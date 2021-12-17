@@ -1,0 +1,71 @@
+@import "../../utils/variables.scss";
+.landing-background {
+  background-color: $orange;
+  border: 1px solid $white;
+  &-form {
+    background-color: $light-blue;
+    width: 100%;
+    height: 525px;
+    clip-path: polygon(
+      66% 39%,
+      90% 20%,
+      100% 100%,
+      54% 56%,
+      25% 100%,
+      0 31%,
+      21% 0
+    );
+  }
+  &-title-container {
+    color: $white;
+    position: relative;
+    top: 200px;
+  }
+  &-title {
+    position: absolute;
+    left: 80px;
+  }
+  &-landing-button {
+    position: absolute;
+    left: 360px;
+    top: 70px;
+    border: none;
+    padding: 12px 18px 12px 18px;
+    color: white;
+    background-color: $orange;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: all 1s;
+    &:after,
+    &:before {
+      content: " ";
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      border: 0px solid white;
+      transition: all 1s;
+    }
+    &:after {
+      top: -1px;
+      left: -1px;
+      border-top: 3px solid $white;
+      border-left: 3px solid $white;
+    }
+    &:before {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 3px solid $white;
+      border-right: 3px solid $white;
+    }
+    &:hover {
+      cursor: pointer;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      &:before,
+      &:after {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

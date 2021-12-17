@@ -7,6 +7,7 @@ import Login from "./components/Login/Login";
 import AuctionDetail from "./components/AuctionDetail/AuctionDetail";
 import Auctions from "./components/Auctions/Auctions";
 import Profile from "./components/Profile/Profile";
+import LandingPage from "./components/LandingPage/LandingPage";
 import PrivateRoute from "./components/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./state/store";
@@ -17,6 +18,7 @@ const App = () => {
         <BrowserRouter>
           <Navbar />
           <Switch>
+            <Route exact path="/" component={LandingPage} />
             <Route exact path="/register" component={Register} />
             <PrivateRoute exact path="/auction/:id" component={AuctionDetail} />
             <PrivateRoute exact path="/auctions" component={Auctions} />
