@@ -4,6 +4,7 @@ import {
   addAuctionAction,
   auctionErrorAction,
   getAuctionsAction,
+  getAuctionAction,
   bidAuctionAction,
 } from "../actions/auctionActions";
 
@@ -42,7 +43,7 @@ export const bidAuctionOperation = (body) => async (dispatch) => {
     dispatch(auctionErrorAction(error.response.data));
   }
 };
-export const getAuctionsOptions = () => async (dispatch) => {
+export const getAuctionsOperation = () => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -54,6 +55,23 @@ export const getAuctionsOptions = () => async (dispatch) => {
       config
     );
     dispatch(getAuctionsAction(response.data));
+  } catch (error) {
+    dispatch(auctionErrorAction(error.response.data));
+  }
+};
+export const getAuctionOperation = (id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "x-auth-token": Cookies.get("token"),
+      },
+    };
+    const response = await axios.get(
+      `http://localhost:8080/api/auction/${id}`,
+      config
+    );
+    console.log(response.data);
+    dispatch(getAuctionAction(response.data));
   } catch (error) {
     dispatch(auctionErrorAction(error.response.data));
   }

@@ -14,7 +14,7 @@ import {
   logoutOperation,
   getUserOperation,
 } from "../../state/operations/userOperations";
-import { getAuctionsOptions } from "../../state/operations/auctionOperations";
+import { getAuctionsOperation } from "../../state/operations/auctionOperations";
 import "./Navbar.scss";
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Navbar = () => {
   useEffect(() => {
     if (Cookies.get("token")) {
       dispatch(getUserOperation());
-      dispatch(getAuctionsOptions());
+      dispatch(getAuctionsOperation());
     }
   }, []);
   return (

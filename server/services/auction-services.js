@@ -26,7 +26,11 @@ const putBidAuction = async (req, res) => {
   try {
     const { id } = req.params;
     const { price } = req.body;
-    const auction = await Auction.findByIdAndUpdate(
+    let auction = await Auction.findById(id);
+    if (auction.prices[auction.prices.length - 1].price > price) {
+      return res.status(400).send("Your bid must be higher");
+    }
+    auction = await Auction.findByIdAndUpdate(
       id,
       {
         $push: {
@@ -42,7 +46,9 @@ const putBidAuction = async (req, res) => {
       },
     ]);
     res.send(auction);
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 };
 const getAuctions = async (req, res) => {
   try {
@@ -60,4 +66,19 @@ const getAuctions = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
-module.exports = { postAuction, getAuctions, putBidAuction };
+const getAuction = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const auction = await Auction.findById(id).populate([
+      { path: "user", select: "name auctions _id address" },
+      {
+        path: "prices",
+        populate: { path: "user", select: "name auctions _id address" },
+      },
+    ]);
+    res.send(auction);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+module.exports = { postAuction, getAuctions, putBidAuction, getAuction };

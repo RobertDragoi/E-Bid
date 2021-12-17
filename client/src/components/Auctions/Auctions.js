@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Auction from "../Auction/Auction";
 import {
   addAuctionOperation,
-  getAuctionsOptions,
+  getAuctionsOperation,
 } from "../../state/operations/auctionOperations";
 import "./Auctions.scss";
 const Auctions = () => {
   useEffect(() => {
-    dispatch(getAuctionsOptions());
+    dispatch(getAuctionsOperation());
   }, []);
   const [show, setShow] = useState(false);
   const [auction, setAuction] = useState({
@@ -25,7 +25,7 @@ const Auctions = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(addAuctionOperation(auction));
-    dispatch(getAuctionsOptions());
+    dispatch(getAuctionsOperation());
     setAuction({
       title: "",
       description: "",
