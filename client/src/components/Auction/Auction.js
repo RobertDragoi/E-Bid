@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   faCheckSquare,
@@ -7,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Auction.scss";
 const Auction = (props) => {
+  const { user } = useSelector((state) => state.user);
   const convertDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toDateString();
@@ -29,7 +31,8 @@ const Auction = (props) => {
           <div className="auction-container-text-bottom">
             <div>{convertDate(props.date)}</div>
             <div>
-              {props.participation ? (
+              {props.participation ||
+              props.prices.some((p) => p.user._id === user._id) ? (
                 <FontAwesomeIcon color="black" icon={faCheckSquare} />
               ) : (
                 <FontAwesomeIcon color="black" icon={faWindowClose} />
