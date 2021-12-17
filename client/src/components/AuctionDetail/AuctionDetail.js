@@ -11,20 +11,22 @@ const AuctionDetail = () => {
     const date = new Date(dateStr);
     return date.toDateString();
   };
-  const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { auctionDetail, error } = useSelector((state) => state.auction);
+  const [value, setValue] = useState(0);
   useEffect(() => {
     console.log("sasa");
     dispatch(getAuctionOperation(id));
-  }, []);
-  const { auctionDetail } = useSelector((state) => state.auction);
+  }, [id, dispatch]);
+
   const onChange = (e) => {
     setValue(e.target.value);
   };
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(bidAuctionOperation({ id, price: value }));
+    dispatch(getAuctionOperation(id));
   };
 
   return (
@@ -66,6 +68,11 @@ const AuctionDetail = () => {
                   Place bet
                 </button>
               </div>
+              {error ? (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
