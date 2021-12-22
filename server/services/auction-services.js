@@ -10,14 +10,15 @@ const postAuction = async (req, res) => {
       startPrice,
     });
     await auction.save();
-    const new_auction = await Auction.findById(auction._id).populate([
-      { path: "user", select: "name auctions _id address" },
-      {
-        path: "prices",
-        populate: { path: "user", select: "name auctions _id address" },
-      },
-    ]);
-    res.send(new_auction);
+    await Auction.findById(auction._id)
+      .populate([
+        { path: "user", select: "name auctions _id address" },
+        {
+          path: "prices",
+          populate: { path: "user", select: "name auctions _id address" },
+        },
+      ])
+      .exec((err, auction) => res.send(auction));
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -30,7 +31,7 @@ const putBidAuction = async (req, res) => {
     if (auction.prices[auction.prices.length - 1].price > price) {
       return res.status(400).send("Your bid must be higher");
     }
-    auction = await Auction.findByIdAndUpdate(
+    await Auction.findByIdAndUpdate(
       id,
       {
         $push: {
@@ -38,21 +39,22 @@ const putBidAuction = async (req, res) => {
         },
       },
       { new: true }
-    ).populate([
-      { path: "user", select: "name auctions _id address" },
-      {
-        path: "prices",
-        populate: { path: "user", select: "name auctions _id address" },
-      },
-    ]);
-    res.send(auction);
+    )
+      .populate([
+        { path: "user", select: "name auctions _id address" },
+        {
+          path: "prices",
+          populate: { path: "user", select: "name auctions _id address" },
+        },
+      ])
+      .exec((err, auction) => res.send(auction));
   } catch (error) {
     res.status(400).send(error.message);
   }
 };
 const getAuctions = async (req, res) => {
   try {
-    const auctions = await Auction.find()
+    await Auction.find()
       .sort({ date: -1 })
       .populate([
         { path: "user", select: "name auctions _id address" },
@@ -60,8 +62,8 @@ const getAuctions = async (req, res) => {
           path: "prices",
           populate: { path: "user", select: "name auctions _id address" },
         },
-      ]);
-    res.send(auctions);
+      ])
+      .exec((err, auctions) => res.send(auctions));
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -69,14 +71,15 @@ const getAuctions = async (req, res) => {
 const getAuction = async (req, res) => {
   try {
     const { id } = req.params;
-    const auction = await Auction.findById(id).populate([
-      { path: "user", select: "name auctions _id address" },
-      {
-        path: "prices",
-        populate: { path: "user", select: "name auctions _id address" },
-      },
-    ]);
-    res.send(auction);
+    await Auction.findById(id)
+      .populate([
+        { path: "user", select: "name auctions _id address" },
+        {
+          path: "prices",
+          populate: { path: "user", select: "name auctions _id address" },
+        },
+      ])
+      .exec((err, auction) => res.send(auction));
   } catch (error) {
     res.status(400).send(error.message);
   }
