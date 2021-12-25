@@ -39,6 +39,10 @@ const Auctions = () => {
       <div className="row">
         <div className="col-2"></div>
         <div className="col-8">
+          <div className="auctions-title">
+            <h2 className="auctions-title-left">Search</h2>
+            <h2 className="auctions-title-right">Auctions</h2>
+          </div>
           <button className="auctions-button" onClick={() => setShow(!show)}>
             Place an auction
           </button>
