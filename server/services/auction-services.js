@@ -84,4 +84,26 @@ const getAuction = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
-module.exports = { postAuction, getAuctions, putBidAuction, getAuction };
+const getUsersAuctions = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Auction.find({ user: id })
+      .populate([
+        { path: "user", select: "name auctions _id address" },
+        {
+          path: "prices",
+          populate: { path: "user", select: "name auctions _id address" },
+        },
+      ])
+      .exec((err, auctions) => res.send(auctions));
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+module.exports = {
+  postAuction,
+  getAuctions,
+  putBidAuction,
+  getAuction,
+  getUsersAuctions,
+};

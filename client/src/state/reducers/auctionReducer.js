@@ -3,6 +3,7 @@ import {
   AUCTION_ERROR,
   GET_AUCTIONS,
   GET_AUCTION,
+  GET_USERS_AUCTIONS,
   BID_AUCTION,
 } from "../types.js";
 const initialState = {
@@ -20,6 +21,8 @@ const auctionReducer = (state = initialState, action) => {
       return { ...state, auctions: payload, error: null };
     case GET_AUCTION:
       return { ...state, auctionDetail: payload, error: null };
+    case GET_USERS_AUCTIONS:
+      return { ...state, usersAuctions: payload, error: null };
     case BID_AUCTION:
       return {
         ...state,

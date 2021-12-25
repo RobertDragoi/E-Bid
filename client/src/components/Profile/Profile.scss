@@ -22,3 +22,20 @@
     }
   }
 }
+.profile-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.3rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  &-left {
+    color: $light-blue;
+  }
+  &-right {
+    color: $orange;
+  }
+}

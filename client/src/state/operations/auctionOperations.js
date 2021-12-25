@@ -5,6 +5,7 @@ import {
   auctionErrorAction,
   getAuctionsAction,
   getAuctionAction,
+  getUserAuctionsAction,
   bidAuctionAction,
 } from "../actions/auctionActions";
 
@@ -70,8 +71,24 @@ export const getAuctionOperation = (id) => async (dispatch) => {
       `http://localhost:8080/api/auction/${id}`,
       config
     );
-    console.log(response.data);
     dispatch(getAuctionAction(response.data));
+  } catch (error) {
+    dispatch(auctionErrorAction(error.response.data));
+  }
+};
+export const getUserAuctionsOperation = (id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "x-auth-token": Cookies.get("token"),
+      },
+    };
+    const response = await axios.get(
+      `http://localhost:8080/api/auction/user/${id}`,
+      config
+    );
+    console.log(response.data);
+    dispatch(getUserAuctionsAction(response.data));
   } catch (error) {
     dispatch(auctionErrorAction(error.response.data));
   }

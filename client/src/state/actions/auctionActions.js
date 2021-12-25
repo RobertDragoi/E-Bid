@@ -3,6 +3,7 @@ import {
   AUCTION_ERROR,
   GET_AUCTIONS,
   GET_AUCTION,
+  GET_USERS_AUCTIONS,
   BID_AUCTION,
 } from "../types.js";
 export const addAuctionAction = (values) => ({
@@ -19,6 +20,10 @@ export const getAuctionsAction = (values) => ({
 });
 export const getAuctionAction = (values) => ({
   type: GET_AUCTION,
+  payload: values,
+});
+export const getUserAuctionsAction = (values) => ({
+  type: GET_USERS_AUCTIONS,
   payload: values,
 });
 export const bidAuctionAction = (values) => ({
