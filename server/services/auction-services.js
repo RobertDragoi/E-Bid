@@ -8,6 +8,7 @@ const postAuction = async (req, res) => {
       description,
       user: req.user.id,
       startPrice,
+      participation: true,
     });
     await auction.save();
     await Auction.findById(auction._id)
@@ -28,9 +29,22 @@ const putBidAuction = async (req, res) => {
     const { id } = req.params;
     const { price } = req.body;
     let auction = await Auction.findById(id);
-    if (auction.prices[auction.prices.length - 1].price > price) {
+    let max;
+
+    if (auction.prices.length > 0) {
+      max = auction.prices.reduce(function (prev, current) {
+        return prev.price > current.price ? prev : current;
+      });
+    }
+
+    if (req.user.id === auction.user._id.toString()) {
+      return res.status(400).send("You can't bid at your own auction");
+    }
+
+    if (price <= auction.startPrice || price <= max?.price) {
       return res.status(400).send("Your bid must be higher");
     }
+
     await Auction.findByIdAndUpdate(
       id,
       {

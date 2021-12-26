@@ -20,9 +20,9 @@ const auctionReducer = (state = initialState, action) => {
     case GET_AUCTIONS:
       return { ...state, auctions: payload, error: null };
     case GET_AUCTION:
-      return { ...state, auctionDetail: payload, error: null };
+      return { ...state, auctionDetail: payload };
     case GET_USERS_AUCTIONS:
-      return { ...state, usersAuctions: payload, error: null };
+      return { ...state, usersAuctions: payload };
     case BID_AUCTION:
       return {
         ...state,

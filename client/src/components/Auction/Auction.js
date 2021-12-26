@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   faCheckSquare,
   faWindowClose,
+  faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Auction.scss";
@@ -31,8 +32,9 @@ const Auction = (props) => {
           <div className="auction-container-text-bottom">
             <div>{convertDate(props.date)}</div>
             <div>
-              {props.participation ||
-              props.prices.some((p) => p.user._id === user._id) ? (
+              {props.participation ? (
+                <FontAwesomeIcon color="black" icon={faUserAlt} />
+              ) : props.prices.some((p) => p.user._id === user._id) ? (
                 <FontAwesomeIcon color="black" icon={faCheckSquare} />
               ) : (
                 <FontAwesomeIcon color="black" icon={faWindowClose} />

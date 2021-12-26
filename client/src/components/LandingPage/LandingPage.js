@@ -14,7 +14,7 @@ const LandingPage = () => {
     <div className="landing-background">
       <div className="landing-background-container">
         {" "}
-        <img width="600" height="527" src="./images/landing.jpg"></img>
+        <img width="600" height="507" src="./images/landing.jpg"></img>
       </div>
       <div className="landing-background-container">
         {" "}

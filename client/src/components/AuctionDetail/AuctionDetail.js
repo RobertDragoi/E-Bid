@@ -16,7 +16,6 @@ const AuctionDetail = () => {
   const { auctionDetail, error } = useSelector((state) => state.auction);
   const [value, setValue] = useState(0);
   useEffect(() => {
-    console.log("sasa");
     dispatch(getAuctionOperation(id));
   }, [id, dispatch]);
 
