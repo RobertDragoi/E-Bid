@@ -5,12 +5,9 @@ import {
   bidAuctionOperation,
   getAuctionOperation,
 } from "../../state/operations/auctionOperations";
+import { convertDate } from "../../utils/functions";
 import "./AuctionDetail.scss";
 const AuctionDetail = () => {
-  const convertDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toDateString();
-  };
   const dispatch = useDispatch();
   const { id } = useParams();
   const { auctionDetail, error } = useSelector((state) => state.auction);
@@ -26,6 +23,7 @@ const AuctionDetail = () => {
     e.preventDefault();
     dispatch(bidAuctionOperation({ id, price: value }));
     dispatch(getAuctionOperation(id));
+    setTimeout(() => setValue(0), 1000);
   };
 
   return (
@@ -37,8 +35,11 @@ const AuctionDetail = () => {
             <div className="auctiondetail-container-title">
               <h3>{auctionDetail?.title}</h3>
               <p>
-                {auctionDetail?.prices[auctionDetail?.prices.length - 1].price}{" "}
-                $
+                {auctionDetail?.prices.length > 0
+                  ? auctionDetail?.prices[auctionDetail?.prices.length - 1]
+                      ?.price
+                  : auctionDetail?.startPrice}
+                {""}$
               </p>
             </div>
             <div>{convertDate(auctionDetail?.date)}</div>
@@ -49,10 +50,11 @@ const AuctionDetail = () => {
             <div className="auctiondetail-container-list">
               <h3>List of bidders</h3>
               {auctionDetail?.prices.length > 0 &&
-                auctionDetail?.prices.map((price) => (
+                auctionDetail?.prices.map((bid) => (
                   <div className="auctiondetail-container-list-item">
-                    <div>{price.user.name}</div>
-                    <div>{price.price} $</div>
+                    <div>{bid.user.name}</div>
+                    <div>{convertDate(bid.date)}</div>
+                    <div>{bid.price} $</div>
                   </div>
                 ))}
 

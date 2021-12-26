@@ -7,6 +7,7 @@ let AuctionSchema = new mongoose.Schema({
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
       price: { type: Number, required: true },
+      date: { type: Date, required: true, default: Date.now },
     },
   ],
   startPrice: { type: Number, required: true },

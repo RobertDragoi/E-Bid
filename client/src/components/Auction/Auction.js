@@ -7,13 +7,11 @@ import {
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { convertDate } from "../../utils/functions";
 import "./Auction.scss";
 const Auction = (props) => {
   const { user } = useSelector((state) => state.user);
-  const convertDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toDateString();
-  };
+
   return (
     <Link className="auction-container-link" to={`/auction/${props.id}`}>
       <div className="auction-container">

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserAuctionsOperation } from "../../state/operations/auctionOperations";
 import Auction from "../Auction/Auction";
+import { convertDate } from "../../utils/functions";
 import "./Profile.scss";
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
@@ -10,10 +11,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getUserAuctionsOperation(user._id));
   }, []);
-  const convertDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toDateString();
-  };
+
   return (
     <div className="container">
       <div className="row">
@@ -26,9 +24,9 @@ const Profile = () => {
               <div>Date of registration</div>
             </div>
             <div className="profile-container-row">
-              <div>{user.name}</div>
-              <div>{user.address}</div>
-              <div>{convertDate(user.date)}</div>
+              <div>{user?.name}</div>
+              <div>{user?.address}</div>
+              <div>{convertDate(user?.date)}</div>
             </div>
           </div>
           <div className="profile-title">
