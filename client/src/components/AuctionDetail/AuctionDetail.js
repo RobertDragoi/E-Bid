@@ -34,9 +34,16 @@ const AuctionDetail = () => {
         <div className="col-2" />
         <div className="col-8">
           <div className="auctiondetail-container">
-            <h3>{auctionDetail?.title}</h3>
+            <div className="auctiondetail-container-title">
+              <h3>{auctionDetail?.title}</h3>
+              <p>
+                {auctionDetail?.prices[auctionDetail?.prices.length - 1].price}{" "}
+                $
+              </p>
+            </div>
             <div>{convertDate(auctionDetail?.date)}</div>
             <div className="auctiondetail-container-description">
+              <h3>Description</h3>
               {auctionDetail?.description}
             </div>
             <div className="auctiondetail-container-list">
@@ -45,11 +52,11 @@ const AuctionDetail = () => {
                 auctionDetail?.prices.map((price) => (
                   <div className="auctiondetail-container-list-item">
                     <div>{price.user.name}</div>
-                    <div>{price.price}</div>
+                    <div>{price.price} $</div>
                   </div>
                 ))}
 
-              <div className="auctiondetail-container-list-item">
+              <div className="auctiondetail-container-list-bid">
                 <input
                   type="number"
                   min={

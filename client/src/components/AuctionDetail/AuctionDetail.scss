@@ -1,5 +1,10 @@
 @import "../../utils/variables.scss";
 .auctiondetail-container {
+  &-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -22,6 +27,13 @@
       justify-content: space-between;
       border-top: 1px solid $brown;
       padding-top: 3px;
+    }
+    &-bid {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      border-top: 1px solid $brown;
+      padding-top: 20px;
     }
   }
 }

@@ -8,7 +8,7 @@ const postAuction = async (req, res) => {
       description,
       user: req.user.id,
       startPrice,
-      participation: true,
+      participation: req.user.id,
     });
     await auction.save();
     await Auction.findById(auction._id)

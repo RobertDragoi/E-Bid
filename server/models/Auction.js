@@ -10,7 +10,7 @@ let AuctionSchema = new mongoose.Schema({
     },
   ],
   startPrice: { type: Number, required: true },
-  participation: { type: Boolean, default: false },
+  participation: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   date: { type: Date, required: true, default: Date.now },
 });
 module.exports = mongoose.model("Auction", AuctionSchema);

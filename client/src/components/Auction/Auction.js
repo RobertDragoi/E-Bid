@@ -18,7 +18,7 @@ const Auction = (props) => {
     <Link className="auction-container-link" to={`/auction/${props.id}`}>
       <div className="auction-container">
         <div className="auction-container-image">
-          <img src="./images/image.jpg"></img>
+          <img width="140" height="140" src="./images/image.jpg"></img>
         </div>
         <div className="auction-container-text">
           <div className="auction-container-text-upper">
@@ -32,7 +32,7 @@ const Auction = (props) => {
           <div className="auction-container-text-bottom">
             <div>{convertDate(props.date)}</div>
             <div>
-              {props.participation ? (
+              {props.participation === user?._id ? (
                 <FontAwesomeIcon color="black" icon={faUserAlt} />
               ) : props.prices.some((p) => p.user._id === user._id) ? (
                 <FontAwesomeIcon color="black" icon={faCheckSquare} />
