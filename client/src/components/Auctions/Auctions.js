@@ -17,7 +17,7 @@ const Auctions = () => {
     startPrice: "",
   });
   const { title, description, startPrice } = auction;
-  const { auctions } = useSelector((state) => state.auction);
+  const { auctions, loading } = useSelector((state) => state.auction);
   const dispatch = useDispatch();
   const onChange = (e) => {
     setAuction({ ...auction, [e.target.name]: e.target.value });
@@ -103,17 +103,31 @@ const Auctions = () => {
               </div>
             </form>
           )}
-          {auctions?.map((auction) => (
-            <Auction
-              key={`auction_${auction._id}`}
-              id={auction._id}
-              startPrice={auction.startPrice}
-              prices={auction.prices}
-              title={auction.title}
-              participation={auction.participation}
-              date={auction.date}
-            />
-          ))}
+          {loading ? (
+            <div className="d-flex justify-content-center">
+              <div
+                className="spinner-border"
+                style={{ width: "10rem", height: "10rem" }}
+                role="status"
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {auctions?.map((auction) => (
+                <Auction
+                  key={`auction_${auction._id}`}
+                  id={auction._id}
+                  startPrice={auction.startPrice}
+                  prices={auction.prices}
+                  title={auction.title}
+                  participation={auction.participation}
+                  date={auction.date}
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="col-2"></div>
       </div>

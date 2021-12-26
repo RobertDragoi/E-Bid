@@ -1,6 +1,7 @@
 import {
   ADD_AUCTION,
   AUCTION_ERROR,
+  LOADING_AUCTION,
   GET_AUCTIONS,
   GET_AUCTION,
   GET_USERS_AUCTIONS,
@@ -13,6 +14,9 @@ export const addAuctionAction = (values) => ({
 export const auctionErrorAction = (values) => ({
   type: AUCTION_ERROR,
   payload: values,
+});
+export const loadingAuctionAction = () => ({
+  type: LOADING_AUCTION,
 });
 export const getAuctionsAction = (values) => ({
   type: GET_AUCTIONS,

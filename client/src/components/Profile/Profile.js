@@ -6,7 +6,7 @@ import { convertDate } from "../../utils/functions";
 import "./Profile.scss";
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
-  const { usersAuctions } = useSelector((state) => state.auction);
+  const { usersAuctions, loading } = useSelector((state) => state.auction);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserAuctionsOperation(user._id));
@@ -33,17 +33,31 @@ const Profile = () => {
             <h2 className="profile-title-left">My</h2>
             <h2 className="profile-title-right">Auctions</h2>
           </div>
-          {usersAuctions?.map((auction) => (
-            <Auction
-              key={`auction_${auction._id}`}
-              id={auction._id}
-              startPrice={auction.startPrice}
-              prices={auction.prices}
-              title={auction.title}
-              participation={auction.participation}
-              date={auction.date}
-            />
-          ))}
+          {loading ? (
+            <div className="d-flex justify-content-center">
+              <div
+                className="spinner-border"
+                style={{ width: "10rem", height: "10rem" }}
+                role="status"
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {usersAuctions?.map((auction) => (
+                <Auction
+                  key={`auction_${auction._id}`}
+                  id={auction._id}
+                  startPrice={auction.startPrice}
+                  prices={auction.prices}
+                  title={auction.title}
+                  participation={auction.participation}
+                  date={auction.date}
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="col-2"></div>
       </div>

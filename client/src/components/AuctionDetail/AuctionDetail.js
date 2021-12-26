@@ -10,7 +10,9 @@ import "./AuctionDetail.scss";
 const AuctionDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { auctionDetail, error } = useSelector((state) => state.auction);
+  const { auctionDetail, error, loading } = useSelector(
+    (state) => state.auction
+  );
   const [value, setValue] = useState(0);
   useEffect(() => {
     dispatch(getAuctionOperation(id));
@@ -31,58 +33,73 @@ const AuctionDetail = () => {
       <div className="row">
         <div className="col-2" />
         <div className="col-8">
-          <div className="auctiondetail-container">
-            <div className="auctiondetail-container-title">
-              <h3>{auctionDetail?.title}</h3>
-              <p>
-                {auctionDetail?.prices.length > 0
-                  ? auctionDetail?.prices[auctionDetail?.prices.length - 1]
-                      ?.price
-                  : auctionDetail?.startPrice}
-                {""}$
-              </p>
-            </div>
-            <div>{convertDate(auctionDetail?.date)}</div>
-            <div className="auctiondetail-container-description">
-              <h3>Description</h3>
-              {auctionDetail?.description}
-            </div>
-            <div className="auctiondetail-container-list">
-              <h3>List of bidders</h3>
-              {auctionDetail?.prices.length > 0 &&
-                auctionDetail?.prices.map((bid) => (
-                  <div className="auctiondetail-container-list-item">
-                    <div>{bid.user.name}</div>
-                    <div>{convertDate(bid.date)}</div>
-                    <div>{bid.price} $</div>
-                  </div>
-                ))}
-
-              <div className="auctiondetail-container-list-bid">
-                <input
-                  type="number"
-                  min={
-                    auctionDetail?.prices[auctionDetail?.prices.length - 1]
-                      ?.price
-                  }
-                  value={value}
-                  onChange={onChange}
-                />
-                <button
-                  type="submit"
-                  onClick={onSubmit}
-                  className="auctiondetail-button"
-                >
-                  Place bet
-                </button>
+          {loading ? (
+            <div className="d-flex justify-content-center">
+              <div
+                className="spinner-border"
+                style={{ width: "10rem", height: "10rem" }}
+                role="status"
+              >
+                <span className="sr-only">Loading...</span>
               </div>
-              {error ? (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              ) : null}
             </div>
-          </div>
+          ) : (
+            <div className="auctiondetail-container">
+              <div className="auctiondetail-container-title">
+                <h3>{auctionDetail?.title}</h3>
+                <p>
+                  {auctionDetail?.prices.length > 0
+                    ? auctionDetail?.prices[auctionDetail?.prices.length - 1]
+                        ?.price
+                    : auctionDetail?.startPrice}
+                  {""}$
+                </p>
+              </div>
+              <div>{convertDate(auctionDetail?.date)}</div>
+              <div className="auctiondetail-container-description">
+                <h3>Description</h3>
+                {auctionDetail?.description}
+              </div>
+              <div className="auctiondetail-container-list">
+                <h3>List of bidders</h3>
+                {auctionDetail?.prices.length > 0 &&
+                  auctionDetail?.prices.map((bid, index) => (
+                    <div
+                      key={`bid_${index}`}
+                      className="auctiondetail-container-list-item"
+                    >
+                      <div>{bid.user.name}</div>
+                      <div>{convertDate(bid.date)}</div>
+                      <div>{bid.price} $</div>
+                    </div>
+                  ))}
+
+                <div className="auctiondetail-container-list-bid">
+                  <input
+                    type="number"
+                    min={
+                      auctionDetail?.prices[auctionDetail?.prices.length - 1]
+                        ?.price
+                    }
+                    value={value}
+                    onChange={onChange}
+                  />
+                  <button
+                    type="submit"
+                    onClick={onSubmit}
+                    className="auctiondetail-button"
+                  >
+                    Place bet
+                  </button>
+                </div>
+                {error ? (
+                  <div className="alert alert-danger" role="alert">
+                    {error}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          )}
         </div>
         <div className="col-2" />
       </div>

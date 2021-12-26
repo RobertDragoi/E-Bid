@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import {
   addAuctionAction,
   auctionErrorAction,
+  loadingAuctionAction,
   getAuctionsAction,
   getAuctionAction,
   getUserAuctionsAction,
@@ -46,6 +47,7 @@ export const bidAuctionOperation = (body) => async (dispatch) => {
 };
 export const getAuctionsOperation = () => async (dispatch) => {
   try {
+    dispatch(loadingAuctionAction());
     const config = {
       headers: {
         "x-auth-token": Cookies.get("token"),
@@ -62,6 +64,7 @@ export const getAuctionsOperation = () => async (dispatch) => {
 };
 export const getAuctionOperation = (id) => async (dispatch) => {
   try {
+    dispatch(loadingAuctionAction());
     const config = {
       headers: {
         "x-auth-token": Cookies.get("token"),
@@ -78,6 +81,7 @@ export const getAuctionOperation = (id) => async (dispatch) => {
 };
 export const getUserAuctionsOperation = (id) => async (dispatch) => {
   try {
+    dispatch(loadingAuctionAction());
     const config = {
       headers: {
         "x-auth-token": Cookies.get("token"),

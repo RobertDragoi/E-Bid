@@ -5,6 +5,7 @@ export const USER_ERROR = "USER_ERROR";
 export const LOGOUT = "LOGOUT";
 export const ADD_AUCTION = "ADD_AUCTION";
 export const AUCTION_ERROR = "AUCTION_ERROR";
+export const LOADING_AUCTION = "LOADING_AUCTION";
 export const GET_AUCTIONS = "GET_AUCTIONS";
 export const GET_AUCTION = "GET_AUCTION";
 export const GET_USERS_AUCTIONS = "GET_USERS_AUCTIONS";
