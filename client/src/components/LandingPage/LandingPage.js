@@ -12,28 +12,30 @@ const LandingPage = () => {
   });
   return (
     <div className="landing-background">
-      <div className="landing-background-form">
-        <div className="landing-background-title-container">
-          <h3 className="landing-background-title">
-            You want to start an auction? Here is the place to do it
-          </h3>
-          {isAuthenticated ? (
-            <button
-              onClick={() => history.push("/auctions")}
-              className="landing-background-landing-button"
-            >
-              Auctions
-            </button>
-          ) : (
-            <button
-              onClick={() => history.push("/register")}
-              className="landing-background-landing-button"
-            >
-              Register
-            </button>
-          )}
-        </div>
-        <div></div>
+      <div className="landing-background-container">
+        {" "}
+        <img width="600" height="527" src="./images/landing.jpg"></img>
+      </div>
+      <div className="landing-background-container">
+        {" "}
+        <h1 className="landing-background-title">
+          You want to start participating in auctions?
+        </h1>
+        {isAuthenticated ? (
+          <button
+            onClick={() => history.push("/auctions")}
+            className="landing-background-landing-button"
+          >
+            Auctions
+          </button>
+        ) : (
+          <button
+            onClick={() => history.push("/register")}
+            className="landing-background-landing-button"
+          >
+            Register
+          </button>
+        )}
       </div>
     </div>
   );

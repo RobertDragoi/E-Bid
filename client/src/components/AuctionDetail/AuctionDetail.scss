@@ -20,7 +20,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      border-top: 1px solid $light-blue;
+      border-top: 1px solid $brown;
       padding-top: 3px;
     }
   }
@@ -30,7 +30,7 @@
   border: none;
   padding: 8px 8px 8px 8px;
   color: white;
-  background-color: $light-blue;
+  background-color: $brown;
   &:hover {
     background-color: $orange;
     color: white;
