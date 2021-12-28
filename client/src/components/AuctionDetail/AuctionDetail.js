@@ -52,7 +52,7 @@ const AuctionDetail = () => {
                     ? auctionDetail?.prices[auctionDetail?.prices.length - 1]
                         ?.price
                     : auctionDetail?.startPrice}
-                  {""}$
+                  {""} $
                 </p>
               </div>
               <div>{convertDate(auctionDetail?.date)}</div>
@@ -62,6 +62,11 @@ const AuctionDetail = () => {
               </div>
               <div className="auctiondetail-container-list">
                 <h3>List of bidders</h3>
+                <div className="auctiondetail-container-list-item">
+                  <div>Starting price</div>
+                  <div>{convertDate(auctionDetail?.date)}</div>
+                  <div>{auctionDetail?.startPrice} $</div>
+                </div>
                 {auctionDetail?.prices.length > 0 &&
                   auctionDetail?.prices.map((bid, index) => (
                     <div

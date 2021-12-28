@@ -25,6 +25,7 @@ const Auction = (props) => {
               {props.prices.length > 0
                 ? props.prices[props.prices.length - 1].price
                 : props.startPrice}
+              {""} $
             </div>
           </div>
           <div className="auction-container-text-bottom">
